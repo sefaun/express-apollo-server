@@ -1,8 +1,8 @@
 import { Application } from 'express'
 import { ApolloServer } from 'apollo-server-express'
 
-import resolvers from './resolvers'
 import { type_defs } from './typedefs'
+import { resolvers } from './resolvers'
 
 
 export const GraphQLApiV1 = async (app: Application) => {

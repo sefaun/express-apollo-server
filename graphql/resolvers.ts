@@ -22,7 +22,7 @@ const nisanur = async (data, t, next, returns) => {
   return returns(t("user_listed") + data)
 }
 
-export default {
+export const resolvers = {
   Query: {
     getSelectedUser: async (_, { }, { req }, _info) => {
       const result = await middlewareAsync(sefa, nisanur)(req.t, req.t)
