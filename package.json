@@ -1,7 +1,7 @@
 {
   "name": "express-apollo-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "For middleware of graphql resolvers a example",
   "main": "./build/index.js",
   "scripts": {
     "dev": "nodemon ./build/index.js",
