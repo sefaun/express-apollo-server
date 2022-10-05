@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import cors from 'cors'
 import morgan from 'morgan'
 import i18next from 'i18next'
@@ -5,6 +6,7 @@ import i18next_fs_backend from 'i18next-fs-backend'
 import i18next_http_middleware from 'i18next-http-middleware'
 import express, { Application, NextFunction, Request, Response } from 'express'
 
+dotenv.config()
 import { GraphQLApiV1 } from './graphql'
 
 
@@ -52,7 +54,7 @@ export class GraphQLServer {
   }
 
   private initServerOnPort() {
-    this.app.listen(5000, () => console.log("🚀 GraphQL is Running on Port " + 5000))
+    this.app.listen(process.env.GRAPHQL_API_PORT, () => console.log("🚀 GraphQL is Running on Port " + process.env.GRAPHQL_API_PORT))
   }
 
 }
