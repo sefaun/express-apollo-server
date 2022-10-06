@@ -1,6 +1,5 @@
-const slice = Array.prototype.slice
-
-export function middlewareAsync(...[]: Iterable<Function>): any {
+export function GraphqlMiddleware(...[]: Iterable<Function>): any {
+  const slice = Array.prototype.slice
 
   const stacks = slice.call(arguments)
   const that = this
@@ -19,7 +18,7 @@ export function middlewareAsync(...[]: Iterable<Function>): any {
   }
 
   return async function (...[]: Iterable<string | number | object[] | Record<any, any>>) {
-
+    arg = 0
     params = slice.call(arguments)
 
     function returns(_data: any) {
@@ -43,9 +42,6 @@ export function middlewareAsync(...[]: Iterable<Function>): any {
 
       await stacks[arg].apply(that, [...new_params, ...params, next, returns])
     }
-
-    arg = 0
-    params = []
 
     return return_values.length ? return_values[0] : undefined
   }

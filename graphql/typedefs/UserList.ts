@@ -5,5 +5,6 @@ type Query {
 
 type userListPayload {
   name: String
+  informative: ApiResponse
 }
 `

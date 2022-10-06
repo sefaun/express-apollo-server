@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken'
 
+import { ApiResponse } from '../utils/ApiResponse'
+
 
 export const JwtCheck = async (_, { }, { req }, _info, next, returns) => {
   try {
@@ -9,6 +11,6 @@ export const JwtCheck = async (_, { }, { req }, _info, next, returns) => {
 
     return next()
   } catch (error) {
-    return returns({ name: "token error" })
+    return returns(ApiResponse(401, req.t("invalid_token")))
   }
 }

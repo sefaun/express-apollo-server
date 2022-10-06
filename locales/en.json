@@ -1,4 +1,7 @@
 {
+  "invalid_token": "Invalid Token",
   "user_listed": "User Listed",
-  "user_created": "User Created"
+  "user_created": "User Created",
+  "user_list_error": "User List Error",
+  "user_create_error": "User Create Error"
 }

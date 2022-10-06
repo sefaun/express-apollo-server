@@ -5,6 +5,7 @@ type Mutation {
 
 type newUserRegisterPayload {
   result: String
+  informative: ApiResponse
 }
 
 input registerData {

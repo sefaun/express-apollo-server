@@ -1,4 +1,7 @@
 {
+  "invalid_token": "Hatalı Token",
   "user_listed": "Kullanıcı Listelendi",
-  "user_created": "Kullanıcı Oluşturuldu"
+  "user_created": "Kullanıcı Oluşturuldu",
+  "user_list_error": "Kullancı Listeleme Hatası",
+  "user_create_error": "Kullancı Oluşturma Hatası"
 }
