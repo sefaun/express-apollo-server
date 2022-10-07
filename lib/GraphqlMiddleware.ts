@@ -3,9 +3,6 @@ export function GraphqlMiddleware(...[]: Iterable<Function>): any {
 
   const stacks = slice.call(arguments)
   const that = this
-  var arg = 0
-  var params = []
-  var return_values = []
 
   if (!stacks.length) {
     throw new Error("There is no any argument functions.")
@@ -17,33 +14,33 @@ export function GraphqlMiddleware(...[]: Iterable<Function>): any {
     }
   }
 
-  return async function (...[]: Iterable<string | number | object[] | Record<any, any>>) {
-    arg = 0
-    params = slice.call(arguments)
-
-    function returns(_data: any) {
-      return_values = slice.call(arguments);
-      return return_values
-    }
+  return async function () {
+    var arg = 0
+    var return_values = []
+    var next_old_parameters = []
+    const params = slice.call(arguments)
 
     if (!params.length) {
       throw new Error("There is no any arguments.")
     }
 
-    await stacks[arg].apply(that, [...params, next, returns])
-
-    async function next() {
-      const new_args = slice.call(arguments)
-      arg++
-
-      let new_params = []
-
-      new_params.push(...new_args)
-
-      await stacks[arg].apply(that, [...new_params, ...params, next, returns])
+    function returns(data: any) {
+      return_values = data;
+      return return_values
     }
 
-    return return_values.length ? return_values[0] : undefined
+    async function next() {
+      const next_args = slice.call(arguments)
+      if (next_args.length) {
+        next_old_parameters.push(...next_args, ...next_old_parameters)
+      }
+      arg++
+      await stacks[arg].apply(that, [...next_old_parameters, ...params, next, returns])
+    }
+
+    await stacks[arg].apply(that, [...params, next, returns])
+
+    return return_values as any
   }
 
 }
