@@ -1,15 +1,15 @@
-import { GraphqlMiddleware } from "../lib/GraphqlMiddleware";
-import { JwtCheck } from "../middleware/JwtCheck";
+import { graphqlResolverslMiddleware } from "graphql-resolvers-middleware"
+import { JwtCheck } from "../middleware/JwtCheck"
 
-import { UserList } from "./controllers/UserList";
-import { NewUserRegister } from "./controllers/NewUserRegister";
+import { UserList } from "./controllers/UserList"
+import { NewUserRegister } from "./controllers/NewUserRegister"
 
 
 export const resolvers = {
   Query: {
-    userList: GraphqlMiddleware(JwtCheck, UserList),
+    userList: graphqlResolverslMiddleware(JwtCheck, UserList),
   },
   Mutation: {
-    newUserRegister: GraphqlMiddleware(JwtCheck, NewUserRegister)
+    newUserRegister: graphqlResolverslMiddleware(JwtCheck, NewUserRegister)
   }
 }
